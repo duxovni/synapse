@@ -227,6 +227,12 @@ class E2eKeysHandler:
 
             ret.update(cross_signing_keys)
 
+            # XXX: DELIBERATELY DROP SOME DEVICES, FOR UISI TESTING PURPOSES ONLY!
+            for user_id in ret["device_keys"]:
+                for device_id in list(ret["device_keys"][user_id].keys()):
+                    if device_id[0] in "ABCDEFGHIJKLM":
+                        del ret["device_keys"][user_id][device_id]
+
             return ret
 
     @trace
