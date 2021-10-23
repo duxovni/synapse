@@ -229,6 +229,8 @@ class E2eKeysHandler:
 
             # XXX: DELIBERATELY DROP SOME DEVICES, FOR UISI TESTING PURPOSES ONLY!
             for user_id in ret["device_keys"]:
+                if user_id == from_user_id:
+                    continue
                 for device_id in list(ret["device_keys"][user_id].keys()):
                     if device_id[0] in "ABCDEFGHIJKLM":
                         del ret["device_keys"][user_id][device_id]
